@@ -5,8 +5,6 @@ import subprocess
 import sys
 
 # %%
-deck = [3, 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 2, 1, 2, 8, 1]
-
 def simulate_game(deck, first_move, verbose=False):
     jump_size = first_move
     position = 0
