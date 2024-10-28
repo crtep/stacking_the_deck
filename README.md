@@ -28,7 +28,7 @@ should print its output in to `stdout` in the same format.
 If you want to write your program in Python, you can do so by modifying
 `random_player.py`. Otherwise, please make reasonable efforts to ensure that
 your program can be compiled and run on an Intel Mac. (Send it in early if 
-you're in doubt.) Please submit your by 4 p.m. on Thursday to
+you're in doubt.) Please submit your by 4 p.m. on Thursday, Nov. 7 to
 ```python
 [f"{username}@nyu.edu" for username in ["carterteplica", "xl5279"]]
 ```
