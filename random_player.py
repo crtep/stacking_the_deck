@@ -18,8 +18,14 @@ def arrange(v: list, s: list) -> list:
     Edit me! The Arranger should return a list of numbers `vp` which is a
     permutation of `v + s` containing `s` as a subsequence.
     """
-    random.shuffle(v)
-    vp = s + v
+    v_other = v[1:] + ["X"] * len(s)
+    random.shuffle(v_other)
+    s_idx = 0
+    for i in range(len(v_other)):
+        if v_other[i] == "X":
+            v_other[i] = s[s_idx]
+            s_idx += 1
+    vp = v_other + [1]
 
     return vp
 

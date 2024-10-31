@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacking the Deck</title>
+    <style>
+        /* Card container styling */
+        #hand-container, #vc-hand-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        #hand-container {
+            color: #a11;
+        }
+
+        #vc-hand-container {
+            color: #211;
+        }
+
+        #title-container {
+            text-align: center;
+            background-size: cover;
+            padding: 20px;
+            border-radius: 10px;
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" */
+        }
+        /* Individual card styling */
+        .card {
+            width: 40px;
+            height: 60px;
+            /* border: 2px solid #a11; */
+            /* border: 2px solid #eee0d2; */
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 5px;
+            background-color: #eee0d2;
+            font-size: 48px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+
+
+        body {
+            color: #eee0d2;
+            background-color: #35654d;
+            margin: 50px;
+            font-family: Rec Mono Duotone;
+        }
+
+        h1 {
+            color: #eee0d2;
+        }
+
+    </style>
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch('/data');
+                const data = await response.json();
+                const handContainer = document.getElementById('hand-container');
+                handContainer.innerHTML = '';  // Clear previous hand
+
+                const vcHandContainer = document.getElementById('vc-hand-container');
+                vcHandContainer.innerHTML = '';  // Clear previous hand
+                
+                // Display each card
+                data.v_numbers.forEach((card, index) => {
+                    const cardDiv = document.createElement('div');
+                    cardDiv.className = 'card';
+                    cardDiv.innerHTML = `<strong>${card}</strong>`;
+                    if (data.vc_indices.includes(index)) {
+                        cardDiv.style.color = "#211";
+                    }
+                    if (data.win_indices.includes(index)) {
+                        cardDiv.style.transform = "translateY(75px)";
+                    }
+                    handContainer.appendChild(cardDiv);
+                });
+
+                data.vc_numbers.forEach(card => {
+                    const cardDiv = document.createElement('div');
+                    cardDiv.className = 'card';
+                    cardDiv.innerHTML = `<strong>${card}</strong>`;
+                    vcHandContainer.appendChild(cardDiv);
+                });
+
+                const outcome = document.getElementById("outcome");
+                outcome.innerText = data.outcome;
+
+                const cname = document.getElementById("chooser-name");
+                cname.innerText = data.chooser_name;
+
+                const aname = document.getElementById("arranger-name");
+                aname.innerText = data.arranger_name;
+
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+        
+        setInterval(fetchData, 2000);
+    </script>
+</head>
+<body>
+    <div id="title-container">
+        <h1>Stacking the Deck</h1>
+    </div>
+
+    <p id="vc-label">Chooser's cards <span id="chooser-name"></span></p>
+    <div id="vc-hand-container">
+        <!-- Cards will be displayed here -->
+    </div>
+
+    <p id="hand-label">Arranger's cards <span id="arranger-name"></span></p>
+    <div id="hand-container">
+        <!-- Cards will be displayed here -->
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 id="outcome" style="text-align: center;"></h1>
+</body>
+</html>
