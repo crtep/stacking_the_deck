@@ -2,7 +2,7 @@
 
 Write a program to play *Stacking the Deck*.
 
-
+## Writing your program
 When you are the **chooser**, your program will called as follows:
 ```
 ./team_name.py choose <v> <vc>
@@ -33,6 +33,25 @@ you're in doubt.) Please submit your by 4 p.m. on Thursday, Nov. 7 to
 [f"{username}@nyu.edu" for username in ["carterteplica", "xl5279"]]
 ```
 
+## Running the game
+To run the game in the CLI only, do
+```bash
+python3 game.py <v_size> <chooser_path> <arranger_path>
+```
+For example:
+```bash
+python3 game.py 10 ./random_player.py ./random_player.py
+```
+
+To run with the webserver, do
+```bash
+python3 web_server.py <v_size> [<chooser_path> <arranger_path>]
+```
+and access the webserver at `localhost:8000`.
+
+If you leave out the chooser and arranger paths, you'll be prompted for them at runtime, and the game will run in an infinite loop. Input <key>s</key> to run the same programs as last time in the opposite roles. (This is a workaround for an issue where the OS does not immediately make the port available again after the server exits.)
+
+---
 
 Happy hacking!
 
