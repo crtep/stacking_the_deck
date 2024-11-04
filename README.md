@@ -36,20 +36,20 @@ you're in doubt.) Please submit your by 4 p.m. on Thursday, Nov. 7 to
 ## Running the game
 To run the game in the CLI only, do
 ```bash
-python3 game.py <v_size> <chooser_path> <arranger_path>
+python3 game.py <n_arranger> <chooser_path> <arranger_path>
 ```
-For example:
+where `n_arranger` is the number of cards at the arranger's disposal (called `k` on the HPS site). For example:
 ```bash
 python3 game.py 10 ./random_player.py ./random_player.py
 ```
 
 To run with the webserver, do
 ```bash
-python3 web_server.py <v_size> [<chooser_path> <arranger_path>]
+python3 web_server.py <n_arranger> [<chooser_path> <arranger_path>]
 ```
 and access the webserver at `localhost:8000`.
 
-If you leave out the chooser and arranger paths, you'll be prompted for them at runtime, and the game will run in an infinite loop. Input <key>s</key> to run the same programs as last time in the opposite roles. (This is a workaround for an issue where the OS does not immediately make the port available again after the server exits.)
+If you leave out the chooser and arranger paths, you'll be prompted for them at runtime, and the game will run in an infinite loop. Input **a** to run the same programs **a**gain, or **s** to run the same programs as last time but **s**wap the roles. (This is a workaround for an issue where the OS does not immediately make the port available again after the server exits.)
 
 ---
 
