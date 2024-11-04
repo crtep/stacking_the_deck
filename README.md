@@ -36,16 +36,16 @@ you're in doubt.) Please submit your by 4 p.m. on Thursday, Nov. 7 to
 ## Running the game
 To run the game in the CLI only, do
 ```bash
-python3 game.py <n_arranger> <chooser_path> <arranger_path>
+python3 game.py <k> <chooser_path> <arranger_path>
 ```
-where `n_arranger` is the number of cards at the arranger's disposal (called `k` on the HPS site). For example:
+where `k` is the number of cards at the arranger's disposal. For example:
 ```bash
 python3 game.py 10 ./random_player.py ./random_player.py
 ```
 
 To run with the webserver, do
 ```bash
-python3 web_server.py <n_arranger> [<chooser_path> <arranger_path>]
+python3 web_server.py <k> [<chooser_path> <arranger_path>]
 ```
 and access the webserver at `localhost:8000`.
 
