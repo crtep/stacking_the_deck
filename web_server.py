@@ -30,6 +30,8 @@ def update_data_periodically():
         while True:
             try:
                 inp = input("Program names: ")
+                if inp == "a": # again
+                    fnames = [fnames[0], fnames[1]]                
                 if inp == "s": # swap
                     fnames = [fnames[1], fnames[0]]
                 else:
