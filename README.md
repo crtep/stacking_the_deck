@@ -38,7 +38,7 @@ To run the game in the CLI only, do
 ```bash
 python3 game.py <k> <chooser_path> <arranger_path>
 ```
-where `k` is the number of cards at the arranger's disposal. For example:
+where `<k>` is the number of cards at the arranger's disposal. For example:
 ```bash
 python3 game.py 10 ./random_player.py ./random_player.py
 ```
