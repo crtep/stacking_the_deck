@@ -58,17 +58,6 @@
             color: #eee0d2;
         }
 
-        .blink {
-          border: 5px solid red;
-          animation: blink-animation 0.5s steps(5, start) 0s;
-        }
-
-        @keyframes blink-animation {
-          0% { opacity: 1; }
-          50% { opacity: 0.5; }
-          100% { opacity: 1; }
-        }
-
     </style>
     <script>
         async function fetchData() {
@@ -91,10 +80,6 @@
                     }
                     if (data.win_indices.includes(index)) {
                         cardImg.style.transform = "translateY(75px)";
-                        cardImg.classList.add('blink');
-                        setTimeout(() => {
-                          cardImg.classList.remove('blink');
-                        }, 2000);
                     }
                     handContainer.appendChild(cardImg);
                 });
