@@ -20,7 +20,7 @@ def simulate_game(deck, first_move, verbose=False):
             print(print_deck[position : position + jump_size])
         position += jump_size
 
-        if position < len(deck):
+        if position <= len(deck): # change from < to <= to include last card
             indices.append(position - 1)
             jump_size = deck[position - 1]
 
