@@ -58,6 +58,17 @@
             color: #eee0d2;
         }
 
+        .blink {
+          border: 5px solid red;
+          animation: blink-animation 0.5s steps(5, start) 0s;
+        }
+
+        @keyframes blink-animation {
+          0% { opacity: 1; }
+          50% { opacity: 0.5; }
+          100% { opacity: 1; }
+        }
+
     </style>
     <script>
         async function fetchData() {
@@ -72,23 +83,27 @@
                 
                 // Display each card
                 data.v_numbers.forEach((card, index) => {
-                    const cardDiv = document.createElement('div');
-                    cardDiv.className = 'card';
-                    cardDiv.innerHTML = `<strong>${card}</strong>`;
+                    const cardImg = document.createElement('img');
+                    cardImg.className = 'card';
+                    cardImg.src = `card_img/${card}H.jpg`;
                     if (data.vc_indices.includes(index)) {
-                        cardDiv.style.color = "#211";
+                        cardImg.src = `card_img/${card}S.jpg`;
                     }
                     if (data.win_indices.includes(index)) {
-                        cardDiv.style.transform = "translateY(75px)";
+                        cardImg.style.transform = "translateY(75px)";
+                        cardImg.classList.add('blink');
+                        setTimeout(() => {
+                          cardImg.classList.remove('blink');
+                        }, 2000);
                     }
-                    handContainer.appendChild(cardDiv);
+                    handContainer.appendChild(cardImg);
                 });
 
                 data.vc_numbers.forEach(card => {
-                    const cardDiv = document.createElement('div');
-                    cardDiv.className = 'card';
-                    cardDiv.innerHTML = `<strong>${card}</strong>`;
-                    vcHandContainer.appendChild(cardDiv);
+                    const cardImg = document.createElement('img');
+                    cardImg.className = 'card';
+                    cardImg.src = `card_img/${card}S.jpg`;
+                    vcHandContainer.appendChild(cardImg);
                 });
 
                 const outcome = document.getElementById("outcome");
