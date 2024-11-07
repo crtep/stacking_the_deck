@@ -1,8 +1,7 @@
+#!/usr/bin/env python3
 import http.server
 import socketserver
 import json
-import time
-import random
 import sys
 
 from game import run_game
@@ -26,6 +25,11 @@ class CustomHandler(http.server.SimpleHTTPRequestHandler):
 
 def update_data_periodically():
     """Update data periodically in the background."""
+    if len(sys.argv) % 2 == 0:
+        seed = None
+    else:
+        seed = sys.argv[-1]
+
     if len(sys.argv) < 4:
         while True:
             try:
@@ -39,13 +43,13 @@ def update_data_periodically():
                 data["chooser_name"] = f"({fnames[0]})"
                 data["arranger_name"] = f"({fnames[1]})"
 
-                run_game(8, int(sys.argv[1]), fnames[0], fnames[1], data)
+                run_game(8, int(sys.argv[1]), fnames[0], fnames[1], data, seed=seed)
             except IndexError:
                 print("Usage: <chooser> <arranger>")
                 pass
 
     else:
-        run_game(8, int(sys.argv[1]), sys.argv[2], sys.argv[3], data)
+        run_game(8, int(sys.argv[1]), sys.argv[2], sys.argv[3], data, seed=seed)
 
 # Run the server and update loop
 if __name__ == "__main__":
