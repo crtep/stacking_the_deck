@@ -49,7 +49,7 @@ def str_to_nums(s):
 
 
 # %%
-def run_game(number_range, k, chooser_program=None, arranger_program=None, server_data=None):
+def run_game(number_range, k, chooser_program=None, arranger_program=None, server_data=None, seed=None):
     if not server_data:
         server_data = dict()
 
@@ -60,6 +60,8 @@ def run_game(number_range, k, chooser_program=None, arranger_program=None, serve
     server_data["win_indices"] = []
 
     cards = list(range(1, number_range + 1)) + list(range(2, number_range + 1))
+    if seed is not None:
+        random.seed(seed)
     random.shuffle(cards)
     cards = [1] + cards
     v_numbers, vc_numbers = cards[:k], cards[k:]
@@ -159,7 +161,15 @@ def run_game(number_range, k, chooser_program=None, arranger_program=None, serve
 
 # %%
 if __name__ == "__main__":
-    x = run_game(8, int(sys.argv[1]), sys.argv[2], sys.argv[3])
+    if len(sys.argv) < 4:
+        print("Usage: python game.py <k> <chooser_program> <arranger_program>")
+        exit(1)
+    elif len(sys.argv) > 4:
+        seed = sys.argv[4]
+    else:
+        seed = None
+
+    x = run_game(8, int(sys.argv[1]), sys.argv[2], sys.argv[3], seed=seed)
 
     if x > 0:
         exit(0)
