@@ -10,6 +10,7 @@
             display: flex;
             gap: 10px;
             margin-top: 20px;
+            justify-content: space-between;
         }
 
         #hand-container {
@@ -29,17 +30,19 @@
         }
         /* Individual card styling */
         .card {
-            width: 40px;
-            height: 60px;
+            /* width: 40px; */
+            /* height: 60px; */
+            width: 4.5%;
+            height: auto;
             /* border: 2px solid #a11; */
             /* border: 2px solid #eee0d2; */
-            border-radius: 8px;
+            border-radius: 8%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 5px;
+            padding: 0.3%;
             background-color: #eee0d2;
             font-size: 48px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -90,6 +93,24 @@
                     cardImg.src = `card_img/${card}S.jpg`;
                     vcHandContainer.appendChild(cardImg);
                 });
+
+                // Add invisible cards to make 16
+                const totalCards = 16;
+                const currentCards = data.v_numbers.length;
+                for (let i = currentCards; i < totalCards; i++) {
+                    const invisibleCard = document.createElement('div');
+                    invisibleCard.className = 'card';
+                    invisibleCard.style.visibility = 'hidden';
+                    handContainer.appendChild(invisibleCard);
+                }
+
+                const vcCurrentCards = data.vc_numbers.length;
+                for (let i = vcCurrentCards; i < totalCards; i++) {
+                    const invisibleCard = document.createElement('div');
+                    invisibleCard.className = 'card';
+                    invisibleCard.style.visibility = 'hidden';
+                    vcHandContainer.appendChild(invisibleCard);
+                }
 
                 const outcome = document.getElementById("outcome");
                 outcome.innerText = data.outcome;
